@@ -1,0 +1,34 @@
+
+1、执行 openssl pkcs8 -inform DER -nocrypt -in platform.pk8 -out platform.pem
+
+2、执行 openssl pkcs12 -export -in platform.x509.pem -out platform.p12 -inkey platform.pem -password pass:bonauto -name zc20
+
+3、执行 keytool -importkeystore -deststorepass bonauto -destkeystore platform.jks -srckeystore platform.p12 -srcstoretype PKCS12 -srcstorepass bonauto
+--------------------- 
+4.keytool -importkeystore -srckeystore platform.jks -destkeystore platform.jks -deststoretype pkcs12
+
+5.本keystore密码：bonauto
+
+6.
+signingConfigs {
+    main {
+        storeFile file("./keystore/platform.jks")
+        storePassword "bonauto"
+        keyAlias "zc20"
+        keyPassword "bonauto"
+    }
+}
+
+buildTypes {
+    release {
+        signingConfig signingConfigs.main
+        minifyEnabled false
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+
+    debug{
+        signingConfig signingConfigs.main
+        minifyEnabled false
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+}

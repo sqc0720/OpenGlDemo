@@ -1,0 +1,74 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdk 28
+
+    defaultConfig {
+        applicationId "com.app.opengldemo"
+        minSdk 28
+        targetSdk 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        main {
+//            storeFile file("./keystore/zhongqi.keystore")
+//            storePassword "x-auto"
+//            keyAlias "zhongqi-platform"
+//            keyPassword "x-auto"
+
+//            storeFile file("./keystore/wuling.keystore")
+//            storePassword "x-auto"
+//            keyAlias "wuling-platform"
+//            keyPassword "wuling"
+
+//            storeFile file("./keystore/imx8.keystore")
+//            storePassword "x-auto"
+//            keyAlias "cowin-platform"
+//            keyPassword "cowin"
+
+//            storeFile file("./keystore/gmmc.keystore")
+//            storePassword "x-auto"
+//            keyAlias "gmmc-platform"
+//            keyPassword "x-auto"
+
+            storeFile file("./keystore/changan.keystore")
+            storePassword "x-auto"
+            keyAlias "changan-platform"
+            keyPassword "x-auto"
+        }
+    }
+
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.main
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            signingConfig signingConfigs.main
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
