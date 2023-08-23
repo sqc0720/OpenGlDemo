@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg"
-    tools:context=".MainActivity">
+    android:background="@mipmap/bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <com.app.opengldemo.WindView
+        <com.example.mylibrary.WindView
             android:id="@+id/my_gl"
             android:layout_width="500dp"
             android:layout_height="500dp" />

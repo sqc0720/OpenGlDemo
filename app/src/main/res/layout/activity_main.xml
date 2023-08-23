@@ -7,7 +7,7 @@
     android:background="@mipmap/bg"
     tools:context=".MainActivity">
 
-    <com.app.opengldemo.WindView
+    <com.example.mylibrary.WindView
         android:id="@+id/my_gl"
         android:layout_width="500dp"
         android:layout_height="500dp"

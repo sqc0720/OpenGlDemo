@@ -6,6 +6,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.example.mylibrary.WindView;
+
 public class DrawAnimation extends Activity {
     WindView myView;
 
