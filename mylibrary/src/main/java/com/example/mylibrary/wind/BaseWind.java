@@ -1,5 +1,7 @@
 package com.example.mylibrary.wind;
 
+import com.example.mylibrary.WindRenderer;
+
 import javax.microedition.khronos.opengles.GL10;
 
 public abstract class BaseWind {
@@ -21,4 +23,7 @@ public abstract class BaseWind {
     public abstract void touchDown(float x, float y);
 
     public abstract void touchMove(float x, float y);
+    public abstract void registerListener(WindRenderListener windRendererCallBack);
+    public abstract void unRegisterListener();
+
 }

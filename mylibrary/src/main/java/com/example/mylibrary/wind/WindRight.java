@@ -57,6 +57,7 @@ public class WindRight extends BaseWind {
     private float[] boxs;
 
     private float[] boxs_src;
+    private WindRenderListener windRendererCallBack;
 
     public WindRight(Context c) {
         bitmaps = new Bitmap[BITMAP_SIZE];
@@ -147,13 +148,23 @@ public class WindRight extends BaseWind {
         } else {
             step = (int) angleY;
         }
-        if (angleY >= MAX_STEP) {
-            step = MAX_STEP;
-        } else if (angleY <= 0) {
-            step = 0;
-        } else {
-            step = (int) angleY;
+        windRendererCallBack.onGestureCallBack(step, myCube.yrot);
+        callBack();
+    }
+    private void callBack() {
+        if (windRendererCallBack != null) {
+            windRendererCallBack.onGestureCallBack(step, myCube.yrot);
         }
+    }
+    @Override
+    public void registerListener(WindRenderListener windRendererCallBack) {
+        this.windRendererCallBack = windRendererCallBack;
+    }
+
+    @Override
+    public void unRegisterListener() {
+        this.windRendererCallBack = null;
+
     }
 
     class TextureCube {

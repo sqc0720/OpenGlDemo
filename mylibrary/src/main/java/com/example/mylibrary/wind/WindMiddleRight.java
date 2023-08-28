@@ -59,6 +59,7 @@ public class WindMiddleRight extends BaseWind {
     private float[] boxs;
 
     private float[] boxs_src;
+    private WindRenderListener windRendererCallBack;
 
     public WindMiddleRight(Context c) {
         bitmaps = new Bitmap[BITMAP_SIZE];
@@ -143,6 +144,23 @@ public class WindMiddleRight extends BaseWind {
         } else {
             myCube.xrot = (int) angleY;
         }
+        callBack();
+    }
+    private void callBack() {
+        if (windRendererCallBack != null) {
+            windRendererCallBack.onGestureCallBack(step, myCube.yrot);
+        }
+    }
+
+    @Override
+    public void registerListener(WindRenderListener windRendererCallBack) {
+        this.windRendererCallBack = windRendererCallBack;
+    }
+
+    @Override
+    public void unRegisterListener() {
+        this.windRendererCallBack = null;
+
     }
 
     class TextureCube {

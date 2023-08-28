@@ -13,9 +13,22 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-
+    signingConfigs {
+        main {
+            storeFile file("./keystore/changan.keystore")
+            storePassword "x-auto"
+            keyAlias "changan-platform"
+            keyPassword "x-auto"
+        }
+    }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.main
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
+            signingConfig signingConfigs.main
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

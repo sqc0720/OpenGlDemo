@@ -8,6 +8,7 @@ import com.example.mylibrary.wind.BaseWind;
 import com.example.mylibrary.wind.WindLeft;
 import com.example.mylibrary.wind.WindMiddleLeft;
 import com.example.mylibrary.wind.WindMiddleRight;
+import com.example.mylibrary.wind.WindRenderListener;
 import com.example.mylibrary.wind.WindRight;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -16,7 +17,7 @@ public class WindRenderer implements GLSurfaceView.Renderer {
     private Context context;
 
     private BaseWind baseWind;
-
+    WindRendererCallBack baseListener;
     public WindRenderer(Context c, int wind) {
         context = c;
         if (wind == 3) {
@@ -75,5 +76,17 @@ public class WindRenderer implements GLSurfaceView.Renderer {
 
     public void setSwing(boolean swing) {
         baseWind.swingWind(swing);
+    }
+
+    public void registerWindRenderer(WindRenderListener listener) {
+        baseWind.registerListener(listener);
+    }
+
+    public void unRegisterListener() {
+        baseWind.unRegisterListener();
+    }
+
+    public interface WindRendererCallBack{
+        void onGestureCallBack(float xStep ,float yStep );
     }
 }
