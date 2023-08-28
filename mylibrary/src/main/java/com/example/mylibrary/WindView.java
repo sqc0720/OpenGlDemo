@@ -1,6 +1,7 @@
 package com.example.mylibrary;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
@@ -21,7 +22,7 @@ public class WindView extends GLSurfaceView {
         // Create an OpenGL ES 2.0 context
         //setEGLContextClientVersion(2);
         setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-        mRenderer = new WindRenderer(context);
+        mRenderer = new WindRenderer(context, 0);
 
         // Set the Renderer for drawing on the GLSurfaceView
         setRenderer(mRenderer);
@@ -34,24 +35,30 @@ public class WindView extends GLSurfaceView {
         // Create an OpenGL ES 2.0 context
         //setEGLContextClientVersion(2);
         setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-        mRenderer = new WindRenderer(context);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.hvacIcon);
+        int hvacIcon_position = array.getInt(R.styleable.hvacIcon_position, -1);
+
+        Log.d(TAG, "value--->" + hvacIcon_position);
+        mRenderer = new WindRenderer(context, hvacIcon_position);
 
         // Set the Renderer for drawing on the GLSurfaceView
         setRenderer(mRenderer);
         getHolder().setFormat(PixelFormat.TRANSLUCENT);
         setZOrderOnTop(true);
+        setAlpha(0.1f);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            Log.d(TAG, "ACTION_DOWN x->" + event.getX() + ",y->" + event.getY());
+            mRenderer.touchDown(event.getX(), event.getY());
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            Log.d("zsktest", "ACTION_MOVE ->" + event.getX());
-            mRenderer.setZRot(event.getX() / 2);
+            Log.d(TAG, "ACTION_MOVE x->" + event.getX() + ",y->" + event.getY());
+            mRenderer.touchMove(event.getX(), event.getY());
         } else if (event.getAction() == MotionEvent.ACTION_CANCEL
                 || event.getAction() == MotionEvent.ACTION_UP) {
-
+            Log.d(TAG, "ACTION_UP ->" + event.getX());
         }
         return true;
     }
@@ -61,14 +68,10 @@ public class WindView extends GLSurfaceView {
             Log.d(TAG, "level data error! level->" + level);
             return;
         }
-        mRenderer.setFrameTime(7 - level);
+        mRenderer.setFrameTime(8 - level);
     }
 
-    public void setMode(int mode) {
-        if (mode < 0 || mode > 2) {
-            Log.d(TAG, "mode data error! mode->" + mode);
-            return;
-        }
-        mRenderer.setStepMode(mode);
+    public void setSwing(boolean swing) {
+        mRenderer.setSwing(swing);
     }
 }

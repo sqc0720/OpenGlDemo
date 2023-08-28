@@ -14,7 +14,8 @@
         android:hardwareAccelerated="true"
         android:theme="@style/Theme.OpenGlDemo">
         <activity
-            android:name=".DrawAnimation"
+            android:name=".MainActivity"
+            android:screenOrientation="landscape"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
