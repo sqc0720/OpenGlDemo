@@ -8,4 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "OpenGlDemo"
 include ':app'
-include ':mylibrary'
+include ':windlibrary'

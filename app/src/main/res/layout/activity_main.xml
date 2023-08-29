@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/bg">
 
-    <com.example.mylibrary.WindView
+    <com.autolink.aircontroller.WindView
         android:id="@+id/my_gl"
         android:layout_width="500dp"
         android:layout_height="500dp"

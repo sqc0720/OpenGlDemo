@@ -1,4 +1,4 @@
-package com.example.mylibrary.wind;
+package com.autolink.aircontroller.wind;
 
 public interface WindRenderListener {
     void onGestureCallBack(float xStep ,float yStep );

@@ -7,7 +7,7 @@
     android:background="@mipmap/bg">
 
 
-    <com.example.mylibrary.WindView
+    <com.autolink.aircontroller.WindView
         android:id="@+id/left"
         android:layout_width="500dp"
         android:layout_height="400dp"
@@ -15,7 +15,7 @@
         android:layout_marginTop="270dp"
         source:position="0" />
 
-    <com.example.mylibrary.WindView
+    <com.autolink.aircontroller.WindView
         android:layout_width="500dp"
         android:layout_height="400dp"
         android:layout_marginStart="1210dp"
@@ -45,7 +45,7 @@
         android:visibility="gone" />
 
 
-    <com.example.mylibrary.WindView
+    <com.autolink.aircontroller.WindView
         android:layout_width="300dp"
         android:layout_height="400dp"
         android:layout_marginStart="650dp"
@@ -53,7 +53,7 @@
         source:position="3" />
 
 
-    <com.example.mylibrary.WindView
+    <com.autolink.aircontroller.WindView
         android:layout_width="300dp"
         android:layout_height="400dp"
         android:layout_marginStart="970dp"

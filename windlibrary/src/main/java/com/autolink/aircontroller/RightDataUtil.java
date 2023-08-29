@@ -1,4 +1,6 @@
-package com.example.mylibrary;
+package com.autolink.aircontroller;
+
+import com.example.mylibrary.R;
 
 public class RightDataUtil {
     public static int[] bitmapIds = {R.mipmap.right_climate_anim02_00000, R.mipmap.right_climate_anim02_00001, R.mipmap.right_climate_anim02_00002,

@@ -1,6 +1,4 @@
-package com.example.mylibrary.wind;
-
-import com.example.mylibrary.WindRenderer;
+package com.autolink.aircontroller.wind;
 
 import javax.microedition.khronos.opengles.GL10;
 

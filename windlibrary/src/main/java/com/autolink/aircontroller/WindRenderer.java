@@ -1,15 +1,15 @@
-package com.example.mylibrary;
+package com.autolink.aircontroller;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 
-import com.example.mylibrary.wind.BaseWind;
-import com.example.mylibrary.wind.WindLeft;
-import com.example.mylibrary.wind.WindMiddleLeft;
-import com.example.mylibrary.wind.WindMiddleRight;
-import com.example.mylibrary.wind.WindRenderListener;
-import com.example.mylibrary.wind.WindRight;
+import com.autolink.aircontroller.wind.BaseWind;
+import com.autolink.aircontroller.wind.WindLeft;
+import com.autolink.aircontroller.wind.WindMiddleLeft;
+import com.autolink.aircontroller.wind.WindMiddleRight;
+import com.autolink.aircontroller.wind.WindRenderListener;
+import com.autolink.aircontroller.wind.WindRight;
 
 import javax.microedition.khronos.opengles.GL10;
 

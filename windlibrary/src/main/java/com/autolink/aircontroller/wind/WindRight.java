@@ -1,11 +1,11 @@
-package com.example.mylibrary.wind;
+package com.autolink.aircontroller.wind;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 
-import com.example.mylibrary.RightDataUtil;
+import com.autolink.aircontroller.RightDataUtil;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
