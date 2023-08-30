@@ -1,8 +1,8 @@
 package com.autolink.aircontroller;
 
-import com.example.mylibrary.R;
 
 public class LeftDataUtil {
+
     public static int[] bitmapIds = {R.mipmap.climate_anim_00000, R.mipmap.climate_anim_00001, R.mipmap.climate_anim_00002,
             R.mipmap.climate_anim_00003, R.mipmap.climate_anim_00004, R.mipmap.climate_anim_00005,
 

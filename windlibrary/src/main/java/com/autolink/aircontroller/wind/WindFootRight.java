@@ -13,7 +13,7 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class WindMiddleRight extends BaseWind {
+public class WindFootRight extends BaseWind {
 
     TextureCube myCube;
     Bitmap[] bitmaps;
@@ -41,10 +41,10 @@ public class WindMiddleRight extends BaseWind {
 
     private final float[] BOX_ONE = new float[]{
             //1
-            -0.8f, -1.0f,//左下
-            -0.8f, 1.0f,//左上
-            0.8f, -1.0f,//右下
-            0.8f, 1.0f,//右上
+            -1.0f, -1.0f,//左下
+            -1.0f, 1.0f,//左上
+            2.5f, -1.0f,//右下
+            2.5f, 1.0f,//右上
     };
 
     private final float[] BOX_TWO = new float[]{
@@ -60,7 +60,7 @@ public class WindMiddleRight extends BaseWind {
     private float[] boxs_src;
     private WindRenderListener windRendererCallBack;
 
-    public WindMiddleRight(Context c) {
+    public WindFootRight(Context c) {
         bitmaps = new Bitmap[BITMAP_SIZE];
         for (int i = 0; i < BITMAP_SIZE; i++) {
             bitmaps[i] = BitmapFactory.decodeResource(c.getResources(), MiddleRightDataUtil.bitmapIds[i]);
@@ -231,7 +231,7 @@ public class WindMiddleRight extends BaseWind {
             //gl.glRotatef(zrot, 0, 0, 1f);  //旋转 z
             // gl.glTranslatef(-2.5f, 0f, 0f);//先将wind移动到左侧位置
             //gl.glRotatef(yrot, 0, 1f, 0);  // 进行 y坐标 旋转 y
-            gl.glTranslatef(-0.2f, -0.8f, 0f); // 再次将wind移动改变旋转轴
+            gl.glTranslatef(-0.5f, 0f, 0f); // 再次将wind移动改变旋转轴
             gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[frame]);
             gl.glNormal3f(MiddleRightDataUtil.normals[0][0], MiddleRightDataUtil.normals[0][1], MiddleRightDataUtil.normals[0][2]);
 

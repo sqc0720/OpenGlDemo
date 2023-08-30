@@ -1,6 +1,5 @@
 package com.autolink.aircontroller;
 
-import com.example.mylibrary.R;
 
 public class MiddleRightDataUtil {
     public static int[] bitmapIds = {R.mipmap.ml_climate_anim03_00000, R.mipmap.ml_climate_anim03_00001, R.mipmap.ml_climate_anim03_00002,

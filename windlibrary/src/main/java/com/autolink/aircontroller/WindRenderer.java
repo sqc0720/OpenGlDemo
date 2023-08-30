@@ -5,6 +5,8 @@ import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 
 import com.autolink.aircontroller.wind.BaseWind;
+import com.autolink.aircontroller.wind.WindFootLeft;
+import com.autolink.aircontroller.wind.WindFootRight;
 import com.autolink.aircontroller.wind.WindLeft;
 import com.autolink.aircontroller.wind.WindMiddleLeft;
 import com.autolink.aircontroller.wind.WindMiddleRight;
@@ -17,9 +19,11 @@ public class WindRenderer implements GLSurfaceView.Renderer {
     private Context context;
 
     private BaseWind baseWind;
+    private int wind;
     WindRendererCallBack baseListener;
 
     public WindRenderer(Context c, int wind) {
+        this.wind = wind;
         context = c;
         if (wind == 3) {
             baseWind = new WindMiddleLeft(c);
@@ -27,8 +31,12 @@ public class WindRenderer implements GLSurfaceView.Renderer {
             baseWind = new WindMiddleRight(c);
         } else if (wind == 4) {
             baseWind = new WindRight(c);
-        } else {
+        } else if (wind == 0) {
             baseWind = new WindLeft(c);
+        } else if (wind == 9) {
+            baseWind = new WindFootLeft(c);
+        }else if (wind == 10) {
+            baseWind = new WindFootRight(c);
         }
     }
 
@@ -64,10 +72,16 @@ public class WindRenderer implements GLSurfaceView.Renderer {
     }
 
     void touchDown(float x, float y) {
+        if (wind == 9 || wind == 10) {
+            return;
+        }
         baseWind.touchDown(x, y);
     }
 
     void touchMove(float x, float y) {
+        if (wind == 9 || wind == 10) {
+            return;
+        }
         baseWind.touchMove(x, y);
     }
 
