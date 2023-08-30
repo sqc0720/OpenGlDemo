@@ -151,11 +151,7 @@ public class WindRight extends BaseWind {
         windRendererCallBack.onGestureCallBack(step, myCube.yrot);
         callBack();
     }
-    private void callBack() {
-        if (windRendererCallBack != null) {
-            windRendererCallBack.onGestureCallBack(step, myCube.yrot);
-        }
-    }
+
     @Override
     public void registerListener(WindRenderListener windRendererCallBack) {
         this.windRendererCallBack = windRendererCallBack;
@@ -167,6 +163,25 @@ public class WindRight extends BaseWind {
 
     }
 
+    @Override
+    public void setWindStepInfo(float xStep, float yStep) {
+        step = (int) xStep;
+        myCube.yrot = yStep;
+    }
+
+    @Override
+    public float[] getWindStepInfo() {
+        float[] windStepInfo = new float[2];
+        windStepInfo[0] = step;
+        windStepInfo[1] = myCube.yrot;
+        return windStepInfo;
+    }
+
+    private void callBack() {
+        if (windRendererCallBack != null) {
+            windRendererCallBack.onGestureCallBack(step, myCube.yrot);
+        }
+    }
     class TextureCube {
         Bitmap[] mbitmaps;
         int[] textures;
@@ -274,5 +289,4 @@ public class WindRight extends BaseWind {
             mbitmaps = null;
         }
     }
-
 }

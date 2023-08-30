@@ -91,6 +91,12 @@ public class WindView extends GLSurfaceView {
     public void setSwing(boolean swing) {
         mRenderer.setSwing(swing);
     }
+    public void setWindStepInfo(float xStep, float yStep) {
+        mRenderer.setWindStepInfo(xStep, yStep);
+    }
+    public float[] getWindStepInfo() {
+        return mRenderer.getWindStepInfo();
+    }
 
     private WindRenderListener windRenderListener = new WindRenderListener() {
         @Override

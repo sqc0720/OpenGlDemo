@@ -24,4 +24,6 @@ public abstract class BaseWind {
     public abstract void registerListener(WindRenderListener windRendererCallBack);
     public abstract void unRegisterListener();
 
+    public abstract void setWindStepInfo(float xStep, float yStep);
+    public abstract float[] getWindStepInfo();
 }

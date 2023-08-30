@@ -18,6 +18,7 @@ public class WindRenderer implements GLSurfaceView.Renderer {
 
     private BaseWind baseWind;
     WindRendererCallBack baseListener;
+
     public WindRenderer(Context c, int wind) {
         context = c;
         if (wind == 3) {
@@ -86,7 +87,15 @@ public class WindRenderer implements GLSurfaceView.Renderer {
         baseWind.unRegisterListener();
     }
 
-    public interface WindRendererCallBack{
-        void onGestureCallBack(float xStep ,float yStep );
+    public void setWindStepInfo(float xStep, float yStep) {
+        baseWind.setWindStepInfo(xStep, yStep);
+    }
+
+    public float[] getWindStepInfo() {
+        return baseWind.getWindStepInfo();
+    }
+
+    public interface WindRendererCallBack {
+        void onGestureCallBack(float xStep, float yStep);
     }
 }
