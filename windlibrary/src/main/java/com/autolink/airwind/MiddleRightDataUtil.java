@@ -2,7 +2,7 @@ package com.autolink.airwind;
 
 
 public class MiddleRightDataUtil {
-    public static int[] bitmapIds = {R.mipmap.ml_climate_anim03_00000, R.mipmap.ml_climate_anim03_00001, R.mipmap.ml_climate_anim03_00002,
+    public static int[] bitmapIds = {R.mipmap.ml_climate_anim03_00001, R.mipmap.ml_climate_anim03_00002,
             R.mipmap.ml_climate_anim03_00003, R.mipmap.ml_climate_anim03_00004, R.mipmap.ml_climate_anim03_00005,
 
             R.mipmap.ml_climate_anim03_00006, R.mipmap.ml_climate_anim03_00007, R.mipmap.ml_climate_anim03_00008,
@@ -24,30 +24,7 @@ public class MiddleRightDataUtil {
             R.mipmap.ml_climate_anim03_00051, R.mipmap.ml_climate_anim03_00052, R.mipmap.ml_climate_anim03_00053,
             R.mipmap.ml_climate_anim03_00054, R.mipmap.ml_climate_anim03_00055, R.mipmap.ml_climate_anim03_00056,
             R.mipmap.ml_climate_anim03_00057, R.mipmap.ml_climate_anim03_00058, R.mipmap.ml_climate_anim03_00059,
-            R.mipmap.ml_climate_anim03_00060, R.mipmap.ml_climate_anim03_00061, R.mipmap.ml_climate_anim03_00062,
-            R.mipmap.ml_climate_anim03_00063, R.mipmap.ml_climate_anim03_00064, R.mipmap.ml_climate_anim03_00065,
-            R.mipmap.ml_climate_anim03_00066, R.mipmap.ml_climate_anim03_00067, R.mipmap.ml_climate_anim03_00068,
-
-
-            R.mipmap.ml_climate_anim03_00069, R.mipmap.ml_climate_anim03_00070, R.mipmap.ml_climate_anim03_00071,
-            R.mipmap.ml_climate_anim03_00072, R.mipmap.ml_climate_anim03_00073, R.mipmap.ml_climate_anim03_00074,
-            R.mipmap.ml_climate_anim03_00075, R.mipmap.ml_climate_anim03_00076, R.mipmap.ml_climate_anim03_00077,
-            R.mipmap.ml_climate_anim03_00078, R.mipmap.ml_climate_anim03_00079, R.mipmap.ml_climate_anim03_00080,
-            R.mipmap.ml_climate_anim03_00081, R.mipmap.ml_climate_anim03_00082, R.mipmap.ml_climate_anim03_00083,
-            R.mipmap.ml_climate_anim03_00084, R.mipmap.ml_climate_anim03_00085, R.mipmap.ml_climate_anim03_00086,
-            R.mipmap.ml_climate_anim03_00087, R.mipmap.ml_climate_anim03_00088, R.mipmap.ml_climate_anim03_00089,
-            R.mipmap.ml_climate_anim03_00090, R.mipmap.ml_climate_anim03_00091, R.mipmap.ml_climate_anim03_00092,
-            R.mipmap.ml_climate_anim03_00093, R.mipmap.ml_climate_anim03_00094, R.mipmap.ml_climate_anim03_00095,
-
-
-            R.mipmap.ml_climate_anim03_00096, R.mipmap.ml_climate_anim03_00097, R.mipmap.ml_climate_anim03_00098,
-            R.mipmap.ml_climate_anim03_00099, R.mipmap.ml_climate_anim03_00100, R.mipmap.ml_climate_anim03_00101,
-            R.mipmap.ml_climate_anim03_00102, R.mipmap.ml_climate_anim03_00103, R.mipmap.ml_climate_anim03_00104,
-            R.mipmap.ml_climate_anim03_00105, R.mipmap.ml_climate_anim03_00106, R.mipmap.ml_climate_anim03_00107,
-            R.mipmap.ml_climate_anim03_00108, R.mipmap.ml_climate_anim03_00109, R.mipmap.ml_climate_anim03_00110,
-            R.mipmap.ml_climate_anim03_00111, R.mipmap.ml_climate_anim03_00112, R.mipmap.ml_climate_anim03_00113,
-            R.mipmap.ml_climate_anim03_00114, R.mipmap.ml_climate_anim03_00115, R.mipmap.ml_climate_anim03_00116,
-            R.mipmap.ml_climate_anim03_00117, R.mipmap.ml_climate_anim03_00118, R.mipmap.ml_climate_anim03_00119
+            R.mipmap.ml_climate_anim03_00060, R.mipmap.ml_climate_anim03_00061
     };
 
 

@@ -7,11 +7,9 @@ import android.opengl.GLU;
 import com.autolink.airwind.view.BaseWind;
 import com.autolink.airwind.view.WindFootLeft;
 import com.autolink.airwind.view.WindFootRight;
-import com.autolink.airwind.view.WindLeft;
 import com.autolink.airwind.view.WindMiddleLeft;
 import com.autolink.airwind.view.WindMiddleRight;
 import com.autolink.airwind.view.WindRenderListener;
-import com.autolink.airwind.view.WindRight;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -29,10 +27,6 @@ public class WindRenderer implements GLSurfaceView.Renderer {
             baseWind = new WindMiddleLeft(c);
         } else if (wind == 8) {
             baseWind = new WindMiddleRight(c);
-        } else if (wind == 4) {
-            baseWind = new WindRight(c);
-        } else if (wind == 0) {
-            baseWind = new WindLeft(c);
         } else if (wind == 9) {
             baseWind = new WindFootLeft(c);
         }else if (wind == 10) {

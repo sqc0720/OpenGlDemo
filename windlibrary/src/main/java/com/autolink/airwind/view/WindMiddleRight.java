@@ -17,7 +17,7 @@ public class WindMiddleRight extends BaseWind {
 
     TextureCube myCube;
     Bitmap[] bitmaps;
-    private final int BITMAP_SIZE = 120;
+    private final int BITMAP_SIZE = 60;
     int FRAME_TIME = 3;
     private int time = 0;
 

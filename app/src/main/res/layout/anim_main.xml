@@ -4,7 +4,7 @@
     xmlns:source="http://schemas.android.com/apk/res-auto"
     android:layout_width="1920dp"
     android:layout_height="1080dp"
-    android:background="@mipmap/bg_day">
+    android:background="@mipmap/bg">
 
     <!--    <com.autolink.aircontroller.WindView-->
     <!--        android:id="@+id/left"-->
