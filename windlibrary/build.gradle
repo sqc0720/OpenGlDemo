@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.autolink.aircontroller'
+    namespace 'com.autolink.airwind'
     compileSdk 33
 
     defaultConfig {

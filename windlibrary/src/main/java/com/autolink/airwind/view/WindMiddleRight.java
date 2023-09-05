@@ -1,11 +1,11 @@
-package com.autolink.aircontroller.wind;
+package com.autolink.airwind.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 
-import com.autolink.aircontroller.MiddleRightDataUtil;
+import com.autolink.airwind.MiddleRightDataUtil;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

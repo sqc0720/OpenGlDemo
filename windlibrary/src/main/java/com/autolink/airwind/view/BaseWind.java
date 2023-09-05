@@ -1,4 +1,4 @@
-package com.autolink.aircontroller.wind;
+package com.autolink.airwind.view;
 
 import javax.microedition.khronos.opengles.GL10;
 

@@ -1,17 +1,17 @@
-package com.autolink.aircontroller;
+package com.autolink.airwind;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 
-import com.autolink.aircontroller.wind.BaseWind;
-import com.autolink.aircontroller.wind.WindFootLeft;
-import com.autolink.aircontroller.wind.WindFootRight;
-import com.autolink.aircontroller.wind.WindLeft;
-import com.autolink.aircontroller.wind.WindMiddleLeft;
-import com.autolink.aircontroller.wind.WindMiddleRight;
-import com.autolink.aircontroller.wind.WindRenderListener;
-import com.autolink.aircontroller.wind.WindRight;
+import com.autolink.airwind.view.BaseWind;
+import com.autolink.airwind.view.WindFootLeft;
+import com.autolink.airwind.view.WindFootRight;
+import com.autolink.airwind.view.WindLeft;
+import com.autolink.airwind.view.WindMiddleLeft;
+import com.autolink.airwind.view.WindMiddleRight;
+import com.autolink.airwind.view.WindRenderListener;
+import com.autolink.airwind.view.WindRight;
 
 import javax.microedition.khronos.opengles.GL10;
 

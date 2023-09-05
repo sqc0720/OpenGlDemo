@@ -1,54 +1,53 @@
-package com.autolink.aircontroller;
+package com.autolink.airwind;
 
 
-public class LeftDataUtil {
+public class RightDataUtil {
+    public static int[] bitmapIds = {R.mipmap.right_climate_anim02_00000, R.mipmap.right_climate_anim02_00001, R.mipmap.right_climate_anim02_00002,
+            R.mipmap.right_climate_anim02_00003, R.mipmap.right_climate_anim02_00004, R.mipmap.right_climate_anim02_00005,
 
-    public static int[] bitmapIds = {R.mipmap.climate_anim_00000, R.mipmap.climate_anim_00001, R.mipmap.climate_anim_00002,
-            R.mipmap.climate_anim_00003, R.mipmap.climate_anim_00004, R.mipmap.climate_anim_00005,
+            R.mipmap.right_climate_anim02_00006, R.mipmap.right_climate_anim02_00007, R.mipmap.right_climate_anim02_00008,
+            R.mipmap.right_climate_anim02_00009, R.mipmap.right_climate_anim02_00010, R.mipmap.right_climate_anim02_00011,
+            R.mipmap.right_climate_anim02_00012, R.mipmap.right_climate_anim02_00013, R.mipmap.right_climate_anim02_00014,
+            R.mipmap.right_climate_anim02_00015, R.mipmap.right_climate_anim02_00016, R.mipmap.right_climate_anim02_00017,
+            R.mipmap.right_climate_anim02_00018, R.mipmap.right_climate_anim02_00019, R.mipmap.right_climate_anim02_00020,
+            R.mipmap.right_climate_anim02_00021, R.mipmap.right_climate_anim02_00022, R.mipmap.right_climate_anim02_00023,
+            R.mipmap.right_climate_anim02_00024, R.mipmap.right_climate_anim02_00025, R.mipmap.right_climate_anim02_00026,
+            R.mipmap.right_climate_anim02_00027, R.mipmap.right_climate_anim02_00028, R.mipmap.right_climate_anim02_00029,
+            R.mipmap.right_climate_anim02_00030, R.mipmap.right_climate_anim02_00031, R.mipmap.right_climate_anim02_00032,
+            R.mipmap.right_climate_anim02_00033, R.mipmap.right_climate_anim02_00034, R.mipmap.right_climate_anim02_00035,
+            R.mipmap.right_climate_anim02_00036, R.mipmap.right_climate_anim02_00037, R.mipmap.right_climate_anim02_00038,
 
-            R.mipmap.climate_anim_00006, R.mipmap.climate_anim_00007, R.mipmap.climate_anim_00008,
-            R.mipmap.climate_anim_00009, R.mipmap.climate_anim_00010, R.mipmap.climate_anim_00011,
-            R.mipmap.climate_anim_00012, R.mipmap.climate_anim_00013, R.mipmap.climate_anim_00014,
-            R.mipmap.climate_anim_00015, R.mipmap.climate_anim_00016, R.mipmap.climate_anim_00017,
-            R.mipmap.climate_anim_00018, R.mipmap.climate_anim_00019, R.mipmap.climate_anim_00020,
-            R.mipmap.climate_anim_00021, R.mipmap.climate_anim_00022, R.mipmap.climate_anim_00023,
-            R.mipmap.climate_anim_00024, R.mipmap.climate_anim_00025, R.mipmap.climate_anim_00026,
-            R.mipmap.climate_anim_00027, R.mipmap.climate_anim_00028, R.mipmap.climate_anim_00029,
-            R.mipmap.climate_anim_00030, R.mipmap.climate_anim_00031, R.mipmap.climate_anim_00032,
-            R.mipmap.climate_anim_00033, R.mipmap.climate_anim_00034, R.mipmap.climate_anim_00035,
-            R.mipmap.climate_anim_00036, R.mipmap.climate_anim_00037, R.mipmap.climate_anim_00038,
-
-            R.mipmap.climate_anim_00039, R.mipmap.climate_anim_00040, R.mipmap.climate_anim_00041,
-            R.mipmap.climate_anim_00042, R.mipmap.climate_anim_00043, R.mipmap.climate_anim_00044,
-            R.mipmap.climate_anim_00045, R.mipmap.climate_anim_00046, R.mipmap.climate_anim_00047,
-            R.mipmap.climate_anim_00048, R.mipmap.climate_anim_00049, R.mipmap.climate_anim_00050,
-            R.mipmap.climate_anim_00051, R.mipmap.climate_anim_00052, R.mipmap.climate_anim_00053,
-            R.mipmap.climate_anim_00054, R.mipmap.climate_anim_00055, R.mipmap.climate_anim_00056,
-            R.mipmap.climate_anim_00057, R.mipmap.climate_anim_00058, R.mipmap.climate_anim_00059,
-            R.mipmap.climate_anim_00060, R.mipmap.climate_anim_00061, R.mipmap.climate_anim_00062,
-            R.mipmap.climate_anim_00063, R.mipmap.climate_anim_00064, R.mipmap.climate_anim_00065,
-            R.mipmap.climate_anim_00066, R.mipmap.climate_anim_00067, R.mipmap.climate_anim_00068,
-
-
-            R.mipmap.climate_anim_00069, R.mipmap.climate_anim_00070, R.mipmap.climate_anim_00071,
-            R.mipmap.climate_anim_00072, R.mipmap.climate_anim_00073, R.mipmap.climate_anim_00074,
-            R.mipmap.climate_anim_00075, R.mipmap.climate_anim_00076, R.mipmap.climate_anim_00077,
-            R.mipmap.climate_anim_00078, R.mipmap.climate_anim_00079, R.mipmap.climate_anim_00080,
-            R.mipmap.climate_anim_00081, R.mipmap.climate_anim_00082, R.mipmap.climate_anim_00083,
-            R.mipmap.climate_anim_00084, R.mipmap.climate_anim_00085, R.mipmap.climate_anim_00086,
-            R.mipmap.climate_anim_00087, R.mipmap.climate_anim_00088, R.mipmap.climate_anim_00089,
-            R.mipmap.climate_anim_00090, R.mipmap.climate_anim_00091, R.mipmap.climate_anim_00092,
-            R.mipmap.climate_anim_00093, R.mipmap.climate_anim_00094, R.mipmap.climate_anim_00095,
+            R.mipmap.right_climate_anim02_00039, R.mipmap.right_climate_anim02_00040, R.mipmap.right_climate_anim02_00041,
+            R.mipmap.right_climate_anim02_00042, R.mipmap.right_climate_anim02_00043, R.mipmap.right_climate_anim02_00044,
+            R.mipmap.right_climate_anim02_00045, R.mipmap.right_climate_anim02_00046, R.mipmap.right_climate_anim02_00047,
+            R.mipmap.right_climate_anim02_00048, R.mipmap.right_climate_anim02_00049, R.mipmap.right_climate_anim02_00050,
+            R.mipmap.right_climate_anim02_00051, R.mipmap.right_climate_anim02_00052, R.mipmap.right_climate_anim02_00053,
+            R.mipmap.right_climate_anim02_00054, R.mipmap.right_climate_anim02_00055, R.mipmap.right_climate_anim02_00056,
+            R.mipmap.right_climate_anim02_00057, R.mipmap.right_climate_anim02_00058, R.mipmap.right_climate_anim02_00059,
+            R.mipmap.right_climate_anim02_00060, R.mipmap.right_climate_anim02_00061, R.mipmap.right_climate_anim02_00062,
+            R.mipmap.right_climate_anim02_00063, R.mipmap.right_climate_anim02_00064, R.mipmap.right_climate_anim02_00065,
+            R.mipmap.right_climate_anim02_00066, R.mipmap.right_climate_anim02_00067, R.mipmap.right_climate_anim02_00068,
 
 
-            R.mipmap.climate_anim_00096, R.mipmap.climate_anim_00097, R.mipmap.climate_anim_00098,
-            R.mipmap.climate_anim_00099, R.mipmap.climate_anim_00100, R.mipmap.climate_anim_00101,
-            R.mipmap.climate_anim_00102, R.mipmap.climate_anim_00103, R.mipmap.climate_anim_00104,
-            R.mipmap.climate_anim_00105, R.mipmap.climate_anim_00106, R.mipmap.climate_anim_00107,
-            R.mipmap.climate_anim_00108, R.mipmap.climate_anim_00109, R.mipmap.climate_anim_00110,
-            R.mipmap.climate_anim_00111, R.mipmap.climate_anim_00112, R.mipmap.climate_anim_00113,
-            R.mipmap.climate_anim_00114, R.mipmap.climate_anim_00115, R.mipmap.climate_anim_00116,
-            R.mipmap.climate_anim_00117, R.mipmap.climate_anim_00118, R.mipmap.climate_anim_00119
+            R.mipmap.right_climate_anim02_00069, R.mipmap.right_climate_anim02_00070, R.mipmap.right_climate_anim02_00071,
+            R.mipmap.right_climate_anim02_00072, R.mipmap.right_climate_anim02_00073, R.mipmap.right_climate_anim02_00074,
+            R.mipmap.right_climate_anim02_00075, R.mipmap.right_climate_anim02_00076, R.mipmap.right_climate_anim02_00077,
+            R.mipmap.right_climate_anim02_00078, R.mipmap.right_climate_anim02_00079, R.mipmap.right_climate_anim02_00080,
+            R.mipmap.right_climate_anim02_00081, R.mipmap.right_climate_anim02_00082, R.mipmap.right_climate_anim02_00083,
+            R.mipmap.right_climate_anim02_00084, R.mipmap.right_climate_anim02_00085, R.mipmap.right_climate_anim02_00086,
+            R.mipmap.right_climate_anim02_00087, R.mipmap.right_climate_anim02_00088, R.mipmap.right_climate_anim02_00089,
+            R.mipmap.right_climate_anim02_00090, R.mipmap.right_climate_anim02_00091, R.mipmap.right_climate_anim02_00092,
+            R.mipmap.right_climate_anim02_00093, R.mipmap.right_climate_anim02_00094, R.mipmap.right_climate_anim02_00095,
+
+
+            R.mipmap.right_climate_anim02_00096, R.mipmap.right_climate_anim02_00097, R.mipmap.right_climate_anim02_00098,
+            R.mipmap.right_climate_anim02_00099, R.mipmap.right_climate_anim02_00100, R.mipmap.right_climate_anim02_00101,
+            R.mipmap.right_climate_anim02_00102, R.mipmap.right_climate_anim02_00103, R.mipmap.right_climate_anim02_00104,
+            R.mipmap.right_climate_anim02_00105, R.mipmap.right_climate_anim02_00106, R.mipmap.right_climate_anim02_00107,
+            R.mipmap.right_climate_anim02_00108, R.mipmap.right_climate_anim02_00109, R.mipmap.right_climate_anim02_00110,
+            R.mipmap.right_climate_anim02_00111, R.mipmap.right_climate_anim02_00112, R.mipmap.right_climate_anim02_00113,
+            R.mipmap.right_climate_anim02_00114, R.mipmap.right_climate_anim02_00115, R.mipmap.right_climate_anim02_00116,
+            R.mipmap.right_climate_anim02_00117, R.mipmap.right_climate_anim02_00118, R.mipmap.right_climate_anim02_00119
     };
 
 

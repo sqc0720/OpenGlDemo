@@ -1,11 +1,11 @@
-package com.autolink.aircontroller.wind;
+package com.autolink.airwind.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 
-import com.autolink.aircontroller.MiddleLeftDataUtil;
+import com.autolink.airwind.MiddleRightDataUtil;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -13,7 +13,7 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class WindMiddleLeft extends BaseWind {
+public class WindFootRight extends BaseWind {
 
     TextureCube myCube;
     Bitmap[] bitmaps;
@@ -41,18 +41,18 @@ public class WindMiddleLeft extends BaseWind {
 
     private final float[] BOX_ONE = new float[]{
             //1
-            -0.8f, -1.0f,//左下
-            -0.8f, 1.0f,//左上
-            0.8f, -1.0f,//右下
-            0.8f, 1.0f,//右上
+            -1.0f, -1.0f,//左下
+            -1.0f, 1.0f,//左上
+            2.5f, -1.0f,//右下
+            2.5f, 1.0f,//右上
     };
 
     private final float[] BOX_TWO = new float[]{
             //1
-            -1.8f, -1.0f,//左下
-            -1.0f, 1.0f,//左上
-            0.0f, -1.0f,//右下
-            1.0f, 1.0f,//右上
+            -0.0f, -1.0f,//左下
+            -0.8f, 1.0f,//左上
+            1.8f, -1.0f,//右下
+            0.8f, 1.0f,//右上
     };
 
     private float[] boxs;
@@ -60,10 +60,10 @@ public class WindMiddleLeft extends BaseWind {
     private float[] boxs_src;
     private WindRenderListener windRendererCallBack;
 
-    public WindMiddleLeft(Context c) {
+    public WindFootRight(Context c) {
         bitmaps = new Bitmap[BITMAP_SIZE];
         for (int i = 0; i < BITMAP_SIZE; i++) {
-            bitmaps[i] = BitmapFactory.decodeResource(c.getResources(), MiddleLeftDataUtil.bitmapIds[i]);
+            bitmaps[i] = BitmapFactory.decodeResource(c.getResources(), MiddleRightDataUtil.bitmapIds[i]);
         }
         myCube = new TextureCube(bitmaps);
         boxs = new float[BITMAP_SIZE * 8];
@@ -101,12 +101,16 @@ public class WindMiddleLeft extends BaseWind {
 
     @Override
     public void horizontalWind(int step) {
-
+        if (swing) {
+            return;
+        }
     }
 
     @Override
     public void verticalWind(int step) {
-
+        if (swing) {
+            return;
+        }
     }
 
     @Override
@@ -122,7 +126,7 @@ public class WindMiddleLeft extends BaseWind {
         if (swing) {
             return;
         }
-        float angleX = (down_x - x) / 2 + down_horizontal_angle;
+        float angleX = (x - down_x) / 2 + down_horizontal_angle;
         float angleY = (down_y - y) / 2 + down_vertical_angle;
 
         if (angleX >= MAX_STEP) {
@@ -133,11 +137,11 @@ public class WindMiddleLeft extends BaseWind {
             this.stepSwing = (int) angleX;
         }
         if (angleY >= MAX_STEP) {
-            stepRotate = (int) MAX_STEP;
+            this.stepRotate = (int) MAX_STEP;
         } else if (angleY <= 0) {
-            stepRotate = 0;
+            this.stepRotate = 0;
         } else {
-            stepRotate = (int) angleY;
+            this.stepRotate = (int) angleY;
         }
         callBack();
     }
@@ -169,7 +173,7 @@ public class WindMiddleLeft extends BaseWind {
 
     private void callBack() {
         if (windRendererCallBack != null) {
-            windRendererCallBack.onGestureCallBack(stepSwing, stepRotate);
+            windRendererCallBack.onGestureCallBack(stepSwing, myCube.xrot);
         }
     }
 
@@ -190,7 +194,7 @@ public class WindMiddleLeft extends BaseWind {
 
         public void init(GL10 gl) {
             cubeBuff = makeFloatBuffer(boxs);
-            textureBuffer = makeFloatBuffer(MiddleLeftDataUtil.textureCoordinates);
+            textureBuffer = makeFloatBuffer(MiddleRightDataUtil.textureCoordinates);
             gl.glEnable(GL10.GL_DEPTH_TEST);
             gl.glEnable(GL10.GL_TEXTURE_2D);
             gl.glClearColor(0f, 0f, 0f, 0f);
@@ -227,21 +231,21 @@ public class WindMiddleLeft extends BaseWind {
             //gl.glRotatef(zrot, 0, 0, 1f);  //旋转 z
             // gl.glTranslatef(-2.5f, 0f, 0f);//先将wind移动到左侧位置
             //gl.glRotatef(yrot, 0, 1f, 0);  // 进行 y坐标 旋转 y
-            gl.glTranslatef(0.3f, -0.8f, 0f); // 再次将wind移动改变旋转轴
+            gl.glTranslatef(-0.5f, 0f, 0f); // 再次将wind移动改变旋转轴
             gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[frame]);
-            gl.glNormal3f(MiddleLeftDataUtil.normals[0][0], MiddleLeftDataUtil.normals[0][1], MiddleLeftDataUtil.normals[0][2]);
+            gl.glNormal3f(MiddleRightDataUtil.normals[0][0], MiddleRightDataUtil.normals[0][1], MiddleRightDataUtil.normals[0][2]);
 
             //xrot += 0.5f;
             //yrot += 0.5f;
             //zrot += 0.5f;
 //            if (plus) {
-//                if (xrot <= MAX_SWING_ANGLE) {
+//                if (xrot <= 80.0f) {
 //                    xrot += 0.5f;
 //                } else {
 //                    plus = false;
 //                }
 //            } else {
-//                if (xrot >= MIN_SWING_ANGLE) {
+//                if (xrot >= 0.0f) {
 //                    xrot -= 0.5f;
 //                } else {
 //                    plus = true;

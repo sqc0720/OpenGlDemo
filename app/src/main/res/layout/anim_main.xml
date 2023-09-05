@@ -21,21 +21,21 @@
     <!--        android:layout_marginTop="270dp"-->
     <!--        source:position="4" />-->
 
-    <com.autolink.aircontroller.WindView
+    <com.autolink.airwind.WindView
         android:layout_width="400dp"
         android:layout_height="300dp"
         android:layout_marginStart="400dp"
         android:layout_marginTop="590dp"
         source:position="9" />
 
-    <com.autolink.aircontroller.WindView
+    <com.autolink.airwind.WindView
         android:layout_width="400dp"
         android:layout_height="300dp"
         android:layout_marginStart="1200dp"
         android:layout_marginTop="590dp"
         source:position="10" />
 
-    <com.autolink.aircontroller.WindView
+    <com.autolink.airwind.WindView
         android:id="@+id/left"
         android:layout_width="300dp"
         android:layout_height="400dp"
@@ -43,7 +43,7 @@
         android:layout_marginTop="220dp"
         source:position="3" />
 
-    <com.autolink.aircontroller.WindView
+    <com.autolink.airwind.WindView
         android:layout_width="300dp"
         android:layout_height="400dp"
         android:layout_marginStart="1380dp"
@@ -64,14 +64,14 @@
         android:text="摆风"
         android:visibility="gone" />
 
-    <com.autolink.aircontroller.WindView
+    <com.autolink.airwind.WindView
         android:layout_width="300dp"
         android:layout_height="400dp"
         android:layout_marginStart="655dp"
         android:layout_marginTop="305dp"
         source:position="3" />
 
-    <com.autolink.aircontroller.WindView
+    <com.autolink.airwind.WindView
         android:layout_width="300dp"
         android:layout_height="400dp"
         android:layout_marginStart="970dp"

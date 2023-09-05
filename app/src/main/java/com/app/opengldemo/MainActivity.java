@@ -7,7 +7,7 @@ import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 
-import com.autolink.aircontroller.WindView;
+import com.autolink.airwind.WindView;
 
 public class MainActivity extends Activity {
     WindView myView;
