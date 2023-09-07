@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 
+import com.autolink.airwind.FooterLeftDataUtil;
 import com.autolink.airwind.MiddleLeftDataUtil;
 
 import java.nio.ByteBuffer;
@@ -41,15 +42,15 @@ public class WindFootLeft extends BaseWind {
 
     private final float[] BOX_ONE = new float[]{
             //1
-            -2.5f, -1.0f,//左下
-            -2.5f, 1.0f,//左上
+            -1.9f, -1.0f,//左下
+            -1.9f, 1.0f,//左上
             1.0f, -1.0f,//右下
             1.0f, 1.0f,//右上
     };
 
     private final float[] BOX_TWO = new float[]{
             //1
-            -1.8f, -1.0f,//左下
+            -1.0f, -1.0f,//左下
             -1.0f, 1.0f,//左上
             0.0f, -1.0f,//右下
             1.0f, 1.0f,//右上
@@ -63,7 +64,7 @@ public class WindFootLeft extends BaseWind {
     public WindFootLeft(Context c) {
         bitmaps = new Bitmap[BITMAP_SIZE];
         for (int i = 0; i < BITMAP_SIZE; i++) {
-            bitmaps[i] = BitmapFactory.decodeResource(c.getResources(), MiddleLeftDataUtil.bitmapIds[i]);
+            bitmaps[i] = BitmapFactory.decodeResource(c.getResources(), FooterLeftDataUtil.bitmapIds[i]);
         }
         myCube = new TextureCube(bitmaps);
         boxs = new float[BITMAP_SIZE * 8];

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:source="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_whole"
     android:layout_width="1920dp"
     android:layout_height="1080dp"
     android:background="@mipmap/bg">
@@ -25,14 +26,14 @@
         android:layout_width="400dp"
         android:layout_height="300dp"
         android:layout_marginStart="400dp"
-        android:layout_marginTop="590dp"
+        android:layout_marginTop="570dp"
         source:position="9" />
 
     <com.autolink.airwind.WindView
         android:layout_width="400dp"
         android:layout_height="300dp"
-        android:layout_marginStart="1200dp"
-        android:layout_marginTop="590dp"
+        android:layout_marginStart="1150dp"
+        android:layout_marginTop="570dp"
         source:position="10" />
 
     <com.autolink.airwind.WindView

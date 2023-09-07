@@ -1,16 +1,22 @@
 package com.app.opengldemo;
 
 import android.app.Activity;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.autolink.airwind.WindView;
 
 public class MainActivity extends Activity {
     WindView myView;
+    RelativeLayout rl_whole;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -18,6 +24,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.anim_main);
         setWindowConfig();
         myView = findViewById(R.id.left);
+        rl_whole = findViewById(R.id.rl_whole);
     }
     protected void setWindowConfig() {
         /*SubClass implement*/
@@ -67,4 +74,28 @@ public class MainActivity extends Activity {
 
     }
 
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        int currentNightMode = newConfig.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        switch (currentNightMode) {
+            case Configuration.UI_MODE_NIGHT_NO:
+                // Night mode is not active, we're using the light theme
+                Log.d("shao", "Night mode is active, we're using day theme");
+                Resources res1=getResources();
+                int id = res1.getIdentifier("bg", "mipmap", getPackageName());
+                Log.d("shao", "onConfigurationChanged() called with: id = [" + id + "]");
+                rl_whole.setBackgroundResource(id) ;
+                break;
+            case Configuration.UI_MODE_NIGHT_YES:
+                // Night mode is active, we're using dark theme
+                Log.d("shao", "Night mode is active, we're using dark theme");
+                Resources res=getResources();
+                int id1 = res.getIdentifier("bg_night", "mipmap", getPackageName());
+                Log.d("shao", "onConfigurationChanged() called with: id1 = [" + id1 + "]");
+                rl_whole.setBackgroundResource(id1) ;
+                break;
+        }
+
+    }
 }
