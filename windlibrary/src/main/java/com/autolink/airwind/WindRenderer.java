@@ -29,7 +29,7 @@ public class WindRenderer implements GLSurfaceView.Renderer {
             baseWind = new WindMiddleRight(c);
         } else if (wind == 9) {
             baseWind = new WindFootLeft(c);
-        }else if (wind == 10) {
+        } else if (wind == 10) {
             baseWind = new WindFootRight(c);
         }
     }
@@ -97,6 +97,10 @@ public class WindRenderer implements GLSurfaceView.Renderer {
 
     public void setWindStepInfo(float xStep, float yStep) {
         baseWind.setWindStepInfo(xStep, yStep);
+    }
+
+    public void smoothWindStep(float xStep, float yStep) {
+        baseWind.smoothWindStepInfo(xStep, yStep);
     }
 
     public float[] getWindStepInfo() {

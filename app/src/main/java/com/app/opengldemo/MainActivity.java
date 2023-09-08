@@ -1,5 +1,6 @@
 package com.app.opengldemo;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -15,17 +16,22 @@ import androidx.annotation.Nullable;
 import com.autolink.airwind.WindView;
 
 public class MainActivity extends Activity {
-    WindView myView;
+    WindView right, left, middleRight, middleLeft;
     RelativeLayout rl_whole;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.anim_main);
         setWindowConfig();
-        myView = findViewById(R.id.left);
+        left = findViewById(R.id.left);
+        right = findViewById(R.id.right);
+        middleLeft = findViewById(R.id.middle_left);
+        middleRight = findViewById(R.id.middle_right);
         rl_whole = findViewById(R.id.rl_whole);
     }
+
     protected void setWindowConfig() {
         /*SubClass implement*/
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
@@ -42,13 +48,19 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        myView.onResume();
+        left.onResume();
+        right.onResume();
+        middleLeft.onResume();
+        middleRight.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        myView.onPause();
+        left.onPause();
+        right.onPause();
+        middleLeft.onPause();
+        middleRight.onPause();
     }
 
     int level = 0;
@@ -59,7 +71,7 @@ public class MainActivity extends Activity {
         } else {
             level = 0;
         }
-        myView.setWindLevel(level);
+        left.setWindLevel(level);
     }
 
     int mode = 0;
@@ -70,8 +82,6 @@ public class MainActivity extends Activity {
         } else {
             mode = 0;
         }
-        myView.setSwing(mode==1);
-
     }
 
     @Override
@@ -82,18 +92,18 @@ public class MainActivity extends Activity {
             case Configuration.UI_MODE_NIGHT_NO:
                 // Night mode is not active, we're using the light theme
                 Log.d("shao", "Night mode is active, we're using day theme");
-                Resources res1=getResources();
+                Resources res1 = getResources();
                 int id = res1.getIdentifier("bg", "mipmap", getPackageName());
                 Log.d("shao", "onConfigurationChanged() called with: id = [" + id + "]");
-                rl_whole.setBackgroundResource(id) ;
+                rl_whole.setBackgroundResource(id);
                 break;
             case Configuration.UI_MODE_NIGHT_YES:
                 // Night mode is active, we're using dark theme
                 Log.d("shao", "Night mode is active, we're using dark theme");
-                Resources res=getResources();
+                Resources res = getResources();
                 int id1 = res.getIdentifier("bg_night", "mipmap", getPackageName());
                 Log.d("shao", "onConfigurationChanged() called with: id1 = [" + id1 + "]");
-                rl_whole.setBackgroundResource(id1) ;
+                rl_whole.setBackgroundResource(id1);
                 break;
         }
 

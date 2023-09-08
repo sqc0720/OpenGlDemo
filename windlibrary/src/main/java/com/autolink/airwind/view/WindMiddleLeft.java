@@ -26,9 +26,10 @@ public class WindMiddleLeft extends BaseWind {
     private final int STEP_AUTO_DOWN = 1;
     private final int STEP_CUSTOM = 0;
     private int stepSwing, stepRotate;
+    private int autoStep, autoRotate;
+    private boolean smoothing = false;
     int step_mode = STEP_AUTO_UP;
     private float x = 0.0f;
-
     private boolean plus = true;
 
     private final float MAX_ROTATE_ANGLE = 50.0f;
@@ -111,6 +112,7 @@ public class WindMiddleLeft extends BaseWind {
 
     @Override
     public void touchDown(float x, float y) {
+        smoothing = false;
         down_x = x;
         down_y = y;
         down_horizontal_angle = this.stepSwing;
@@ -119,6 +121,7 @@ public class WindMiddleLeft extends BaseWind {
 
     @Override
     public void touchMove(float x, float y) {
+        smoothing = false;
         if (swing) {
             return;
         }
@@ -155,15 +158,23 @@ public class WindMiddleLeft extends BaseWind {
 
     @Override
     public void setWindStepInfo(float xStep, float yStep) {
+        smoothing = false;
         stepSwing = (int) xStep;
-        myCube.xrot = yStep;
+        stepRotate = (int) yStep;
+    }
+
+    @Override
+    public void smoothWindStepInfo(float xStep, float yStep) {
+        smoothing = true;
+        autoStep = (int) xStep;
+        autoRotate = (int) yStep;
     }
 
     @Override
     public float[] getWindStepInfo() {
         float[] windStepInfo = new float[2];
         windStepInfo[0] = stepSwing;
-        windStepInfo[1] = myCube.xrot;
+        windStepInfo[1] = stepRotate;
         return windStepInfo;
     }
 
@@ -216,6 +227,16 @@ public class WindMiddleLeft extends BaseWind {
                     }
                 }
             }
+
+            if (smoothing) {
+                if (stepSwing == autoStep && stepRotate == autoRotate) {
+                    smoothing = false;
+                } else {
+                    stepSwing = stepSwing + ((stepSwing > autoStep) ? -1 : 1);
+                    stepRotate = stepRotate + ((stepRotate > autoRotate) ? -1 : 1);
+                }
+            }
+
             for (int n = 0; n < boxs.length; n++) {
                 cubeBuff.put(n, boxs[n] + (((boxs_src[n] - boxs[n]) / MAX_STEP) * stepSwing));
             }

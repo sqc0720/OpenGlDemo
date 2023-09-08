@@ -165,6 +165,11 @@ public class WindFootRight extends BaseWind {
     }
 
     @Override
+    public void smoothWindStepInfo(float xStep, float yStep) {
+
+    }
+
+    @Override
     public float[] getWindStepInfo() {
         float[] windStepInfo = new float[2];
         windStepInfo[0] = stepSwing;

@@ -21,9 +21,12 @@ public abstract class BaseWind {
     public abstract void touchDown(float x, float y);
 
     public abstract void touchMove(float x, float y);
+
     public abstract void registerListener(WindRenderListener windRendererCallBack);
+
     public abstract void unRegisterListener();
 
     public abstract void setWindStepInfo(float xStep, float yStep);
+    public abstract void smoothWindStepInfo(float xStep, float yStep);
     public abstract float[] getWindStepInfo();
 }
