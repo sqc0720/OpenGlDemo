@@ -18,6 +18,7 @@ public class WindView extends GLSurfaceView {
 
     private WindRenderer mRenderer;
     private GestureCallBack gestureCallBack;
+    private boolean mEnable = true;
 
     public WindView(Context context) {
         super(context);
@@ -60,15 +61,17 @@ public class WindView extends GLSurfaceView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            Log.d(TAG, "ACTION_DOWN x->" + event.getX() + ",y->" + event.getY());
-            mRenderer.touchDown(event.getX(), event.getY());
-        } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            Log.d(TAG, "ACTION_MOVE x->" + event.getX() + ",y->" + event.getY());
-            mRenderer.touchMove(event.getX(), event.getY());
-        } else if (event.getAction() == MotionEvent.ACTION_CANCEL
-                || event.getAction() == MotionEvent.ACTION_UP) {
-            Log.d(TAG, "ACTION_UP ->" + event.getX());
+        if (mEnable) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                Log.d(TAG, "ACTION_DOWN x->" + event.getX() + ",y->" + event.getY());
+                mRenderer.touchDown(event.getX(), event.getY());
+            } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                Log.d(TAG, "ACTION_MOVE x->" + event.getX() + ",y->" + event.getY());
+                mRenderer.touchMove(event.getX(), event.getY());
+            } else if (event.getAction() == MotionEvent.ACTION_CANCEL
+                    || event.getAction() == MotionEvent.ACTION_UP) {
+                Log.d(TAG, "ACTION_UP ->" + event.getX());
+            }
         }
         return true;
     }
@@ -87,16 +90,16 @@ public class WindView extends GLSurfaceView {
         mRenderer.setFrameTime(8 - level);
     }
 
-    public void setSwing(boolean swing) {
-        mRenderer.setSwing(swing);
-    }
-
-    public void setWindStepInfo(float xStep, float yStep) {
-        mRenderer.setWindStepInfo(xStep, yStep);
+    public void setTouchEnable(boolean enable) {
+        mEnable = enable;
     }
 
     private void smoothWindStep(float xStep, float yStep) {
         mRenderer.smoothWindStep(xStep, yStep);
+    }
+
+    public void setWindStepInfo(float xStep, float yStep) {
+        mRenderer.setWindStepInfo(xStep, yStep);
     }
 
     public float[] getWindStepInfo() {
@@ -115,5 +118,9 @@ public class WindView extends GLSurfaceView {
 
     public interface GestureCallBack {
         void onGestureCallBack(float xStep, float yStep);
+    }
+
+    private void setSwing(boolean swing) {
+        mRenderer.setSwing(swing);
     }
 }
