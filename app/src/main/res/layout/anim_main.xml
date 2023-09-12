@@ -22,19 +22,6 @@
     <!--        android:layout_marginTop="270dp"-->
     <!--        source:position="4" />-->
 
-    <com.autolink.airwind.WindView
-        android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="400dp"
-        android:layout_marginTop="570dp"
-        source:position="5" />
-
-    <com.autolink.airwind.WindView
-        android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="1150dp"
-        android:layout_marginTop="570dp"
-        source:position="6" />
 
     <com.autolink.airwind.WindView
         android:id="@+id/left"
@@ -52,22 +39,6 @@
         android:layout_marginTop="230dp"
         source:position="2" />
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:onClick="windSpeed"
-        android:layout_marginStart="200dp"
-        android:text="风速"
-        android:visibility="gone" />
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:onClick="windbai"
-        android:layout_marginStart="400dp"
-        android:text="摆风"
-        android:visibility="gone" />
-
     <com.autolink.airwind.WindView
         android:id="@+id/middle_left"
         android:layout_width="300dp"
@@ -84,5 +55,34 @@
         android:layout_marginTop="305dp"
         source:position="4" />
 
+    <com.autolink.airwind.WindView
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="400dp"
+        android:layout_marginTop="570dp"
+        source:position="5" />
+
+    <com.autolink.airwind.WindView
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="1150dp"
+        android:layout_marginTop="570dp"
+        source:position="6" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="200dp"
+        android:onClick="windSpeed"
+        android:text="风速"
+        android:visibility="gone" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="400dp"
+        android:onClick="windbai"
+        android:text="摆风"
+        android:visibility="gone" />
 
 </RelativeLayout>
