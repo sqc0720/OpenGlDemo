@@ -7,9 +7,11 @@ import android.opengl.GLU;
 import com.autolink.airwind.view.BaseWind;
 import com.autolink.airwind.view.WindFootLeft;
 import com.autolink.airwind.view.WindFootRight;
+import com.autolink.airwind.view.WindLeft;
 import com.autolink.airwind.view.WindMiddleLeft;
 import com.autolink.airwind.view.WindMiddleRight;
 import com.autolink.airwind.view.WindRenderListener;
+import com.autolink.airwind.view.WindRight;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -23,13 +25,17 @@ public class WindRenderer implements GLSurfaceView.Renderer {
     public WindRenderer(Context c, int wind) {
         this.wind = wind;
         context = c;
-        if (wind == 3) {
+        if (wind == 1) {
+            baseWind = new WindLeft(c);
+        } else if (wind == 2) {
+            baseWind = new WindRight(c);
+        }  else if (wind == 3) {
             baseWind = new WindMiddleLeft(c);
-        } else if (wind == 8) {
+        } else if (wind == 4) {
             baseWind = new WindMiddleRight(c);
-        } else if (wind == 9) {
+        } else if (wind == 5) {
             baseWind = new WindFootLeft(c);
-        } else if (wind == 10) {
+        } else if (wind == 6) {
             baseWind = new WindFootRight(c);
         }
     }
@@ -66,14 +72,14 @@ public class WindRenderer implements GLSurfaceView.Renderer {
     }
 
     void touchDown(float x, float y) {
-        if (wind == 9 || wind == 10) {
+        if (wind == 5 || wind == 6) {
             return;
         }
         baseWind.touchDown(x, y);
     }
 
     void touchMove(float x, float y) {
-        if (wind == 9 || wind == 10) {
+        if (wind == 5 || wind == 6) {
             return;
         }
         baseWind.touchMove(x, y);

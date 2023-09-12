@@ -5,8 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 
-import com.autolink.airwind.FooterRightDataUtil;
-import com.autolink.airwind.MiddleRightDataUtil;
+import com.autolink.airwind.MiddleLeftDataUtil;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -14,7 +13,7 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class WindFootRight extends BaseWind {
+public class WindLeft extends BaseWind {
 
     TextureCube myCube;
     Bitmap[] bitmaps;
@@ -26,10 +25,11 @@ public class WindFootRight extends BaseWind {
     private final int STEP_AUTO_UP = 2;
     private final int STEP_AUTO_DOWN = 1;
     private final int STEP_CUSTOM = 0;
-    private int stepSwing, stepRotate;
+    private int stepSwing = 50, stepRotate;
+    private int autoStep, autoRotate;
+    private boolean smoothing = false;
     int step_mode = STEP_AUTO_UP;
     private float x = 0.0f;
-
     private boolean plus = true;
 
     private final float MAX_ROTATE_ANGLE = 50.0f;
@@ -40,19 +40,32 @@ public class WindFootRight extends BaseWind {
     private float down_x, down_y;
     private float down_horizontal_angle, down_vertical_angle;
 
+    //这组顶点保留
+//    private final float[] BOX_ONE = new float[]{
+//            //1
+//            -0.8f, -1.0f,//左下
+//            -0.8f, 1.0f,//左上
+//            0.8f, -1.0f,//右下
+//            0.8f, 1.0f,//右上
+//    };
+
+//             0.6f, -1.0f,//左下
+//                     -1.0f, 1.0f,//左上
+//                     2.4f, -1.0f,//右下
+//                     1.0f, 1.0f,//右上
     private final float[] BOX_ONE = new float[]{
             //1
-            -1.0f, -1.0f,//左下
-            -1.0f, 1.0f,//左上
-            1.9f, -1.0f,//右下
-            1.9f, 1.0f,//右上
+            0.75f, -1.0f,//左下
+            -0.85f, 1.0f,//左上
+            2.4f, -1.0f,//右下
+            1.0f, 1.0f,//右上
     };
 
     private final float[] BOX_TWO = new float[]{
             //1
-            -0.0f, -1.0f,//左下
+            -1.8f, -1.0f,//左下
             -1.0f, 1.0f,//左上
-            1.0f, -1.0f,//右下
+            0.2f, -1.0f,//右下
             1.0f, 1.0f,//右上
     };
 
@@ -61,10 +74,10 @@ public class WindFootRight extends BaseWind {
     private float[] boxs_src;
     private WindRenderListener windRendererCallBack;
 
-    public WindFootRight(Context c) {
+    public WindLeft(Context c) {
         bitmaps = new Bitmap[BITMAP_SIZE];
         for (int i = 0; i < BITMAP_SIZE; i++) {
-            bitmaps[i] = BitmapFactory.decodeResource(c.getResources(), FooterRightDataUtil.bitmapIds[i]);
+            bitmaps[i] = BitmapFactory.decodeResource(c.getResources(), MiddleLeftDataUtil.bitmapIds[i]);
         }
         myCube = new TextureCube(bitmaps);
         boxs = new float[BITMAP_SIZE * 8];
@@ -102,20 +115,17 @@ public class WindFootRight extends BaseWind {
 
     @Override
     public void horizontalWind(int step) {
-        if (swing) {
-            return;
-        }
+
     }
 
     @Override
     public void verticalWind(int step) {
-        if (swing) {
-            return;
-        }
+
     }
 
     @Override
     public void touchDown(float x, float y) {
+        smoothing = false;
         down_x = x;
         down_y = y;
         down_horizontal_angle = this.stepSwing;
@@ -124,10 +134,11 @@ public class WindFootRight extends BaseWind {
 
     @Override
     public void touchMove(float x, float y) {
+        smoothing = false;
         if (swing) {
             return;
         }
-        float angleX = (x - down_x) / 2 + down_horizontal_angle;
+        float angleX = (down_x - x) / 2 + down_horizontal_angle;
         float angleY = (down_y - y) / 2 + down_vertical_angle;
 
         if (angleX >= MAX_STEP) {
@@ -138,11 +149,11 @@ public class WindFootRight extends BaseWind {
             this.stepSwing = (int) angleX;
         }
         if (angleY >= MAX_STEP) {
-            this.stepRotate = (int) MAX_STEP;
+            stepRotate = (int) MAX_STEP;
         } else if (angleY <= 0) {
-            this.stepRotate = 0;
+            stepRotate = 0;
         } else {
-            this.stepRotate = (int) angleY;
+            stepRotate = (int) angleY;
         }
         callBack();
     }
@@ -160,26 +171,29 @@ public class WindFootRight extends BaseWind {
 
     @Override
     public void setWindStepInfo(float xStep, float yStep) {
+        smoothing = false;
         stepSwing = (int) xStep;
-        myCube.xrot = yStep;
+        stepRotate = (int) yStep;
     }
 
     @Override
     public void smoothWindStepInfo(float xStep, float yStep) {
-
+        smoothing = true;
+        autoStep = (int) xStep;
+        autoRotate = (int) yStep;
     }
 
     @Override
     public float[] getWindStepInfo() {
         float[] windStepInfo = new float[2];
         windStepInfo[0] = stepSwing;
-        windStepInfo[1] = myCube.xrot;
+        windStepInfo[1] = stepRotate;
         return windStepInfo;
     }
 
     private void callBack() {
         if (windRendererCallBack != null) {
-            windRendererCallBack.onGestureCallBack(stepSwing, myCube.xrot);
+            windRendererCallBack.onGestureCallBack(stepSwing, stepRotate);
         }
     }
 
@@ -200,7 +214,7 @@ public class WindFootRight extends BaseWind {
 
         public void init(GL10 gl) {
             cubeBuff = makeFloatBuffer(boxs);
-            textureBuffer = makeFloatBuffer(MiddleRightDataUtil.textureCoordinates);
+            textureBuffer = makeFloatBuffer(MiddleLeftDataUtil.textureCoordinates);
             gl.glEnable(GL10.GL_DEPTH_TEST);
             gl.glEnable(GL10.GL_TEXTURE_2D);
             gl.glClearColor(0f, 0f, 0f, 0f);
@@ -226,6 +240,16 @@ public class WindFootRight extends BaseWind {
                     }
                 }
             }
+
+            if (smoothing) {
+                if (stepSwing == autoStep && stepRotate == autoRotate) {
+                    smoothing = false;
+                } else {
+                    stepSwing = stepSwing + ((stepSwing > autoStep) ? -1 : 1);
+                    stepRotate = stepRotate + ((stepRotate > autoRotate) ? -1 : 1);
+                }
+            }
+
             for (int n = 0; n < boxs.length; n++) {
                 cubeBuff.put(n, boxs[n] + (((boxs_src[n] - boxs[n]) / MAX_STEP) * stepSwing));
             }
@@ -237,21 +261,21 @@ public class WindFootRight extends BaseWind {
             //gl.glRotatef(zrot, 0, 0, 1f);  //旋转 z
             // gl.glTranslatef(-2.5f, 0f, 0f);//先将wind移动到左侧位置
             //gl.glRotatef(yrot, 0, 1f, 0);  // 进行 y坐标 旋转 y
-            gl.glTranslatef(-0.5f, 0f, 0f); // 再次将wind移动改变旋转轴
+            gl.glTranslatef(-0.25f, -0.8f, 0f); // 再次将wind移动改变旋转轴
             gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[frame]);
-            gl.glNormal3f(MiddleRightDataUtil.normals[0][0], MiddleRightDataUtil.normals[0][1], MiddleRightDataUtil.normals[0][2]);
+            gl.glNormal3f(MiddleLeftDataUtil.normals[0][0], MiddleLeftDataUtil.normals[0][1], MiddleLeftDataUtil.normals[0][2]);
 
             //xrot += 0.5f;
             //yrot += 0.5f;
             //zrot += 0.5f;
 //            if (plus) {
-//                if (xrot <= 80.0f) {
+//                if (xrot <= MAX_SWING_ANGLE) {
 //                    xrot += 0.5f;
 //                } else {
 //                    plus = false;
 //                }
 //            } else {
-//                if (xrot >= 0.0f) {
+//                if (xrot >= MIN_SWING_ANGLE) {
 //                    xrot -= 0.5f;
 //                } else {
 //                    plus = true;

@@ -27,30 +27,30 @@
         android:layout_height="300dp"
         android:layout_marginStart="400dp"
         android:layout_marginTop="570dp"
-        source:position="9" />
+        source:position="5" />
 
     <com.autolink.airwind.WindView
         android:layout_width="400dp"
         android:layout_height="300dp"
         android:layout_marginStart="1150dp"
         android:layout_marginTop="570dp"
-        source:position="10" />
+        source:position="6" />
 
     <com.autolink.airwind.WindView
         android:id="@+id/left"
-        android:layout_width="300dp"
+        android:layout_width="400dp"
         android:layout_height="400dp"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="220dp"
-        source:position="3" />
+        android:layout_marginStart="245dp"
+        android:layout_marginTop="230dp"
+        source:position="1" />
 
     <com.autolink.airwind.WindView
         android:id="@+id/right"
-        android:layout_width="300dp"
+        android:layout_width="400dp"
         android:layout_height="400dp"
-        android:layout_marginStart="1380dp"
-        android:layout_marginTop="220dp"
-        source:position="8" />
+        android:layout_marginStart="1280dp"
+        android:layout_marginTop="230dp"
+        source:position="2" />
 
     <Button
         android:layout_width="200dp"
@@ -82,7 +82,7 @@
         android:layout_height="400dp"
         android:layout_marginStart="970dp"
         android:layout_marginTop="305dp"
-        source:position="8" />
+        source:position="4" />
 
 
 </RelativeLayout>

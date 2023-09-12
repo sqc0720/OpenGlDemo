@@ -19,7 +19,7 @@ public class WindFootLeft extends BaseWind {
     TextureCube myCube;
     Bitmap[] bitmaps;
     private final int BITMAP_SIZE = 60;
-    int FRAME_TIME = 3;
+    int FRAME_TIME = 2;
     private int time = 0;
 
     private final float MAX_STEP = 100.0f;
