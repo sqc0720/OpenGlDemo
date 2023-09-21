@@ -19,6 +19,8 @@ public class MainActivity extends Activity {
     WindView right, left, middleRight, middleLeft;
     RelativeLayout rl_whole;
 
+    private boolean open;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +32,17 @@ public class MainActivity extends Activity {
         middleLeft = findViewById(R.id.middle_left);
         middleRight = findViewById(R.id.middle_right);
         rl_whole = findViewById(R.id.rl_whole);
+        left.registerGestureListener(new WindView.GestureCallBack() {
+            @Override
+            public void onGestureCallBack(float xStep, float yStep) {
+
+            }
+
+            @Override
+            public void onDoubleClick() {
+                left.openWind(open = !open);
+            }
+        });
     }
 
     protected void setWindowConfig() {
@@ -38,6 +51,7 @@ public class MainActivity extends Activity {
                 | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+
     }
 
     @Override

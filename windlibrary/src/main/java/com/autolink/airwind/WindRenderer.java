@@ -21,6 +21,7 @@ public class WindRenderer implements GLSurfaceView.Renderer {
     private BaseWind baseWind;
     private int wind;
     WindRendererCallBack baseListener;
+    private boolean open;
 
     public WindRenderer(Context c, int wind) {
         this.wind = wind;
@@ -29,7 +30,7 @@ public class WindRenderer implements GLSurfaceView.Renderer {
             baseWind = new WindLeft(c);
         } else if (wind == 2) {
             baseWind = new WindRight(c);
-        }  else if (wind == 3) {
+        } else if (wind == 3) {
             baseWind = new WindMiddleLeft(c);
         } else if (wind == 4) {
             baseWind = new WindMiddleRight(c);
@@ -45,7 +46,9 @@ public class WindRenderer implements GLSurfaceView.Renderer {
         gl.glLoadIdentity();
 //        GLU.gluLookAt(gl, 1, 1, 3, 0, 0, 0, 0, 1, 0);
         GLU.gluLookAt(gl, -0.1f, 1f, 3f, 0.0f, 0, 0, 0, 1f, 0);
-        baseWind.drawWind(gl);
+        if (open) {
+            baseWind.drawWind(gl);
+        }
     }
 
     @Override
@@ -111,6 +114,10 @@ public class WindRenderer implements GLSurfaceView.Renderer {
 
     public float[] getWindStepInfo() {
         return baseWind.getWindStepInfo();
+    }
+
+    public void openRender(boolean open) {
+        this.open = open;
     }
 
     public interface WindRendererCallBack {

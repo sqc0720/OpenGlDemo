@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -19,6 +20,8 @@ public class WindView extends GLSurfaceView {
     private WindRenderer mRenderer;
     private GestureCallBack gestureCallBack;
     private boolean mEnable = true;
+
+    private boolean open = true;
 
     public WindView(Context context) {
         super(context);
@@ -51,6 +54,7 @@ public class WindView extends GLSurfaceView {
 
         Log.d(TAG, "value--->" + hvacIcon_position);
         mRenderer = new WindRenderer(context, hvacIcon_position);
+        mRenderer.openRender(open);
         mRenderer.registerWindRenderer(windRenderListener);
         // Set the Renderer for drawing on the GLSurfaceView
         setRenderer(mRenderer);
@@ -59,8 +63,106 @@ public class WindView extends GLSurfaceView {
         setAlpha(0.1f);
     }
 
+    private static final int MAX_DISTANCE_FOR_CLICK = 50;
+    private static final int MAX_INTERVAL_FOR_CLICK = 150;
+    private static final int MAX_DOUBLE_CLICK_INTERVAL = 500;
+    private int mDownX = 0;
+    private int mDownY = 0;
+    private int mTempX = 0;
+    private int mTempY = 0;
+    private boolean mIsWaitUpEvent = false;
+    private boolean mIsWaitDoubleClick = false;
+    private final Runnable mTimerForUpEvent = new Runnable() {
+        public void run() {
+            if (mIsWaitUpEvent) {
+                Log.d(TAG, "The mTimerForUpEvent has executed, so set the mIsWaitUpEvent as false");
+                mIsWaitUpEvent = false;
+            } else {
+                Log.d(TAG, "The mTimerForUpEvent has executed, mIsWaitUpEvent is false,so do nothing");
+            }
+        }
+    };
+    private final Runnable mTimerForSecondClick = new Runnable() {
+        @Override
+        public void run() {
+            if (mIsWaitDoubleClick) {
+                Log.d(TAG, "The mTimerForSecondClick has executed,so as a singleClick");
+                mIsWaitDoubleClick = false;
+                // at here can do something for singleClick!!
+            } else {
+                Log.d(TAG, "The mTimerForSecondClick has executed, the doubleclick has executed ,so do thing");
+            }
+        }
+    };
+
+    private void onSingleClick() {
+        Log.d(TAG, "single click here");
+        if (mIsWaitDoubleClick) {
+            onDoubleClick();
+            mIsWaitDoubleClick = false;
+            removeCallbacks(mTimerForSecondClick);
+        } else {
+            mIsWaitDoubleClick = true;
+            postDelayed(mTimerForSecondClick, MAX_DOUBLE_CLICK_INTERVAL);
+        }
+    }
+
+    private void onDoubleClick() {
+        Log.d(TAG, "double click here");
+        if (gestureCallBack != null) {
+            gestureCallBack.onDoubleClick();
+        }
+    }
+
+    private void touchEvent(MotionEvent event) {
+        if (!mIsWaitUpEvent && event.getAction() != MotionEvent.ACTION_DOWN) {
+            return;
+        }
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mDownX = (int) event.getX();
+                mDownY = (int) event.getY();
+                mIsWaitUpEvent = true;
+                postDelayed(mTimerForUpEvent, MAX_INTERVAL_FOR_CLICK);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                mTempX = (int) event.getX();
+                mTempY = (int) event.getY();
+                if (Math.abs(mTempX - mDownX) > MAX_DISTANCE_FOR_CLICK
+                        || Math.abs(mTempY - mDownY) > MAX_DISTANCE_FOR_CLICK) {
+                    mIsWaitUpEvent = false;
+                    removeCallbacks(mTimerForUpEvent);
+                    Log.d(TAG, "The move distance too far:cancel the click");
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                mTempX = (int) event.getX();
+                mTempY = (int) event.getY();
+                if (Math.abs(mTempX - mDownX) > MAX_DISTANCE_FOR_CLICK
+                        || Math.abs(mTempY - mDownY) > MAX_DISTANCE_FOR_CLICK) {
+                    mIsWaitUpEvent = false;
+                    removeCallbacks(mTimerForUpEvent);
+                    Log.d(TAG, "The touch down and up distance too far:cancel the click");
+                    break;
+                } else {
+                    mIsWaitUpEvent = false;
+                    removeCallbacks(mTimerForUpEvent);
+                    onSingleClick();
+                    return;
+                }
+            case MotionEvent.ACTION_CANCEL:
+                mIsWaitUpEvent = false;
+                removeCallbacks(mTimerForUpEvent);
+                Log.d(TAG, "The touch cancel state:cancel the click");
+                break;
+            default:
+                Log.d(TAG, "irrelevant MotionEvent state:" + event.getAction());
+        }
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        touchEvent(event);
         if (mEnable) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 Log.d(TAG, "ACTION_DOWN x->" + event.getX() + ",y->" + event.getY());
@@ -106,6 +208,13 @@ public class WindView extends GLSurfaceView {
         return mRenderer.getWindStepInfo();
     }
 
+    public void openWind(boolean open) {
+        this.open = open;
+        if (mRenderer != null) {
+            mRenderer.openRender(open);
+        }
+    }
+
     private WindRenderListener windRenderListener = new WindRenderListener() {
         @Override
         public void onGestureCallBack(float xStep, float yStep) {
@@ -118,6 +227,8 @@ public class WindView extends GLSurfaceView {
 
     public interface GestureCallBack {
         void onGestureCallBack(float xStep, float yStep);
+
+        void onDoubleClick();
     }
 
     private void setSwing(boolean swing) {
