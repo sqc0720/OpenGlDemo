@@ -163,7 +163,7 @@ public class WindView extends GLSurfaceView {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         touchEvent(event);
-        if (mEnable) {
+        if (mEnable && open) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 Log.d(TAG, "ACTION_DOWN x->" + event.getX() + ",y->" + event.getY());
                 mRenderer.touchDown(event.getX(), event.getY());
