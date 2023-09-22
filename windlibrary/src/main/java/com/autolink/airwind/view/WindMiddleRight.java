@@ -185,7 +185,7 @@ public class WindMiddleRight extends BaseWind {
 
     private void callBack() {
         if (windRendererCallBack != null) {
-            windRendererCallBack.onGestureCallBack(stepSwing, myCube.xrot);
+            windRendererCallBack.onGestureCallBack(stepSwing, stepRotate);
         }
     }
 
