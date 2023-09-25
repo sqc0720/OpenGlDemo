@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 
 import com.autolink.airwind.view.WindRenderListener;
 
+import java.util.Arrays;
+
 //你可以通过设置GLSurfaceView.RENDERMODE_WHEN_DIRTY来让你的GLSurfaceView监听到数据变化的时候再去刷新，
 // 即修改GLSurfaceView的渲染模式。这个设置可以防止重绘GLSurfaceView，直到你调用了requestRender()，这个设置在默写层面上来说，对你的APP是更有好处的
 public class WindView extends GLSurfaceView {
@@ -201,11 +203,14 @@ public class WindView extends GLSurfaceView {
     }
 
     public void setWindStepInfo(float xStep, float yStep) {
-        mRenderer.setWindStepInfo(xStep, yStep);
+        mRenderer.setWindStepInfo(xStep, 100 - yStep);
     }
 
     public float[] getWindStepInfo() {
-        return mRenderer.getWindStepInfo();
+        float[] finalInfo = mRenderer.getWindStepInfo();
+        finalInfo[1] = 100 - finalInfo[1];
+        Log.d(TAG, "getWindStepInfo finalInfo: " + Arrays.toString(finalInfo));
+        return finalInfo;
     }
 
     public void openWind(boolean open) {
@@ -218,9 +223,9 @@ public class WindView extends GLSurfaceView {
     private WindRenderListener windRenderListener = new WindRenderListener() {
         @Override
         public void onGestureCallBack(float xStep, float yStep) {
-            Log.d(TAG, "onGestureCallBack() called with: xStep = [" + xStep + "], yStep = [" + yStep + "]");
+            Log.d(TAG, "onGestureCallBack() called with: xStep = [" + xStep + "], yStep = [" + (100 - yStep) + "]");
             if (gestureCallBack != null) {
-                gestureCallBack.onGestureCallBack(xStep, yStep);
+                gestureCallBack.onGestureCallBack(xStep, 100 - yStep);
             }
         }
     };
